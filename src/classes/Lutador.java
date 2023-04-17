@@ -18,7 +18,7 @@ public class Lutador {
         this.vitorias = vitoria;
         this.derrotas = derrota;
         this.empates = empate;
-        this.peso = peso;
+        this.setPeso(peso);
 
     }
 
