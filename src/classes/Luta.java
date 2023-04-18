@@ -8,20 +8,20 @@ public class Luta {
     private int rounds;
     private boolean aprovada;
 
-    public Luta() {
-
-    }
-    
-    
+ 
     public void marcarLuta(Lutador desafiado, Lutador desafiante) {
         if (desafiado.getCategoria() == desafiante.getCategoria() && desafiado != desafiante) {
             this.aprovada = true;
             this.desafiado = desafiado;
             this.desafiante = desafiante;            
+            System.out.println("Luta marcada com sucesso!");
+            System.out.println("O desafiado será o " + this.desafiado.getNome());
+            System.out.println("O desafiante será o " + this.desafiante.getNome());
         } else {
             this.aprovada = false;
             this.desafiado = null;
             this.desafiante = null; 
+            System.out.println("A luta não foi marcada.");
         }
     }
 
@@ -30,21 +30,26 @@ public class Luta {
             this.desafiado.apresentar();
             this.desafiante.apresentar();
             Random aleatorio = new Random();
-            int vencedor = aleatorio.nextInt(2);
-            if (vencedor == 0) {
-                System.out.println("Empatou!");
-                this.desafiado.empatarLuta();
-                this.desafiante.empatarLuta();
-            } else if (vencedor == 1) {
-                System.out.println("O desafiado ganhou!");
-                this.desafiado.ganharLuta();
-                this.desafiante.perderLuta();
-            }else if (vencedor == 2) {
-                System.out.println("O desafiante ganhou!");
-                this.desafiado.perderLuta();
-                this.desafiante.ganharLuta();
+            int vencedor = aleatorio.nextInt(3);
+            switch (vencedor) {
+                case 0:
+                    System.out.println("Empatou!");
+                    this.desafiado.empatarLuta();
+                    this.desafiante.empatarLuta();
+                break;
+                case 1:
+                    System.out.println("O desafiado ganhou!");
+                    this.desafiado.ganharLuta();
+                    this.desafiante.perderLuta();
+                    break;
+                case 2:
+                    System.out.println("O desafiante ganhou!");
+                    this.desafiado.perderLuta();
+                    this.desafiante.ganharLuta();
+                    break;
             }
-        }
+        } else
+            System.out.println("A luta não pode acontecer.");
     }
 
 
