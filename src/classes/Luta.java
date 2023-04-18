@@ -1,4 +1,6 @@
 package classes;
+import java.util.Random;
+
 
 public class Luta {
     private Lutador desafiado;
@@ -11,12 +13,38 @@ public class Luta {
     }
     
     
-    public void marcarLuta() {
-
+    public void marcarLuta(Lutador desafiado, Lutador desafiante) {
+        if (desafiado.getCategoria() == desafiante.getCategoria() && desafiado != desafiante) {
+            this.aprovada = true;
+            this.desafiado = desafiado;
+            this.desafiante = desafiante;            
+        } else {
+            this.aprovada = false;
+            this.desafiado = null;
+            this.desafiante = null; 
+        }
     }
 
     public void lutar() {
-
+        if (this.aprovada == true) {
+            this.desafiado.apresentar();
+            this.desafiante.apresentar();
+            Random aleatorio = new Random();
+            int vencedor = aleatorio.nextInt(2);
+            if (vencedor == 0) {
+                System.out.println("Empatou!");
+                this.desafiado.empatarLuta();
+                this.desafiante.empatarLuta();
+            } else if (vencedor == 1) {
+                System.out.println("O desafiado ganhou!");
+                this.desafiado.ganharLuta();
+                this.desafiante.perderLuta();
+            }else if (vencedor == 2) {
+                System.out.println("O desafiante ganhou!");
+                this.desafiado.perderLuta();
+                this.desafiante.ganharLuta();
+            }
+        }
     }
 
 
